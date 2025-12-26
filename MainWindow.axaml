@@ -1,0 +1,110 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="HRCProgramV3.MainWindow"
+        Title="HRC Generator"
+        Width="900"
+        Height="700"
+        MinWidth="800"
+        MinHeight="600">
+
+	<Grid Margin="20">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+
+		<!-- File Selection Section -->
+		<StackPanel Grid.Row="0" Margin="0,0,0,20">
+			<TextBlock Text="Input File" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="Auto"/>
+				</Grid.ColumnDefinitions>
+				<TextBox x:Name="FilePathTextBox"
+                         Grid.Column="0"
+                         Watermark="Select a markdown file..."
+                         IsReadOnly="False"
+                         Margin="0,0,10,0"/>
+				<Button x:Name="BrowseButton"
+                        Grid.Column="1"
+                        Content="Browse..."
+                        Click="BrowseButton_Click"
+                        Width="100"/>
+			</Grid>
+		</StackPanel>
+
+		<!-- Number of Levels Section -->
+		<StackPanel Grid.Row="1" Margin="0,0,0,20">
+			<TextBlock Text="Configuration" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="100"/>
+					<ColumnDefinition Width="Auto"/>
+				</Grid.ColumnDefinitions>
+				<TextBlock Grid.Column="0"
+                           Text="Number of Levels:"
+                           VerticalAlignment="Center"
+                           Margin="0,0,10,0"/>
+				<NumericUpDown x:Name="NumberOfLevelsInput"
+                               Grid.Column="1"
+                               Minimum="1"
+                               Maximum="10"
+                               Value="3"
+							   Width="100"
+                               Margin="0,0,10,0"/>
+				<Button x:Name="GenerateConfigButton"
+                        Grid.Column="2"
+                        Content="Generate Level Configuration"
+                        Click="GenerateConfigButton_Click"/>
+			</Grid>
+		</StackPanel>
+
+		<!-- Dynamic Level Configuration Section -->
+		<Border Grid.Row="2"
+                BorderBrush="LightGray"
+                BorderThickness="1"
+                Padding="10"
+                Margin="0,0,0,20">
+			<ScrollViewer VerticalScrollBarVisibility="Auto">
+				<StackPanel x:Name="LevelConfigPanel">
+					<TextBlock Text="Click 'Generate Level Configuration' to begin"
+                               FontStyle="Italic"
+                               Foreground="Gray"
+                               HorizontalAlignment="Center"
+                               Margin="20"/>
+				</StackPanel>
+			</ScrollViewer>
+		</Border>
+
+		<!-- Process Button -->
+		<Button Grid.Row="3"
+                x:Name="ProcessButton"
+                Content="Process File"
+                Click="ProcessButton_Click"
+                HorizontalAlignment="Stretch"
+                Height="40"
+                FontSize="16"
+                FontWeight="Bold"
+                IsEnabled="False"
+                Margin="0,0,0,10"/>
+
+		<!-- Status Section -->
+		<Border Grid.Row="4"
+                BorderBrush="LightGray"
+                BorderThickness="1"
+                Padding="10"
+                Background="#F5F5F5">
+			<ScrollViewer MaxHeight="150" VerticalScrollBarVisibility="Auto">
+				<TextBlock x:Name="StatusTextBlock"
+					Text="Ready. Please select a file and configure levels."
+					TextWrapping="Wrap"
+					Foreground="Black"/>
+			</ScrollViewer>
+		</Border>
+	</Grid>
+</Window>

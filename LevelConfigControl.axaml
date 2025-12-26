@@ -1,0 +1,75 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="HRCProgramV3.LevelConfigControl">
+
+	<Border BorderBrush="DarkGray"
+            BorderThickness="1"
+            Padding="15"
+            Margin="0,0,0,10"
+            CornerRadius="5">
+		<StackPanel>
+			<!-- Level Header -->
+			<TextBlock x:Name="LevelHeaderText"
+                       FontWeight="Bold"
+                       FontSize="14"
+                       Margin="0,0,0,10"/>
+
+			<!-- RegEx Input -->
+			<TextBlock Text="RegEx Pattern:" Margin="0,0,0,5"/>
+			<TextBox x:Name="RegexTextBox"
+                     Watermark="e.g., ^Chapter (\d+)"
+                     Margin="0,0,0,10"/>
+
+			<!-- Item Type Name -->
+			<TextBlock Text="Item Type Name:" Margin="0,0,0,5"/>
+			<TextBox x:Name="ItemTypeTextBox"
+                     Watermark="e.g., Chapter, Section, Component"
+                     Margin="0,0,0,10"/>
+
+			<!-- Capture Group vs Auto Increment -->
+			<TextBlock Text="Identifier Mode:" Margin="0,0,0,5"/>
+			<StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+				<RadioButton x:Name="UseCaptureGroupRadio"
+                             Content="Use Capture Group"
+                             GroupName="IdentifierMode"
+                             IsChecked="True"
+                             Margin="0,0,20,0"
+                             Click="IdentifierModeChanged"/>
+				<RadioButton x:Name="UseAutoIncrementRadio"
+                             Content="Use Auto Increment"
+                             GroupName="IdentifierMode"
+                             Click="IdentifierModeChanged"/>
+			</StackPanel>
+
+			<!-- Auto Increment Options (Hidden by default) -->
+			<StackPanel x:Name="AutoIncrementPanel" IsVisible="False">
+				<TextBlock Text="Incrementor Type:" Margin="0,0,0,5"/>
+				<ComboBox x:Name="IncrementorComboBox"
+                          SelectedIndex="0"
+                          Margin="0,0,0,10">
+					<ComboBoxItem Content="Numeric (1, 2, 3...)"/>
+					<ComboBoxItem Content="Uppercase Alpha (A, B, C...)"/>
+					<ComboBoxItem Content="Lowercase Alpha (a, b, c...)"/>
+				</ComboBox>
+			</StackPanel>
+
+			<!-- Asterisk Input (Only for Level 1) -->
+			<StackPanel x:Name="AsteriskPanel" IsVisible="False">
+				<TextBlock Text="Starting Asterisks:" Margin="0,0,0,5"/>
+				<TextBox x:Name="AsteriskTextBox"
+                         Watermark="e.g., *, **, ***"
+                         Margin="0,0,0,5"/>
+				<TextBlock Text="(Enter one or more asterisks)"
+                           FontSize="11"
+                           Foreground="Gray"
+                           Margin="0,0,0,10"/>
+			</StackPanel>
+
+			<!-- Validation Message -->
+			<TextBlock x:Name="ValidationMessage"
+                       Foreground="Red"
+                       TextWrapping="Wrap"
+                       IsVisible="False"/>
+		</StackPanel>
+	</Border>
+</UserControl>
